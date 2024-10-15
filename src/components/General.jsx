@@ -1,14 +1,32 @@
-export default function General() {
+export default function General({ obj, onChange }) {
   return (
     <>
       <fieldset>
         <legend>General Information</legend>
         <label htmlFor="name">Name:</label>
-        <input type="text" name="name" id="name" />
+        <input
+          onChange={onChange}
+          type="text"
+          name="name"
+          id="name"
+          value={obj.name}
+        />
         <label htmlFor="mail">Email:</label>
-        <input type="email" name="mail" id="mail" />
+        <input
+          onChange={onChange}
+          type="email"
+          name="mail"
+          id="mail"
+          value={obj.mail}
+        />
         <label htmlFor="phone">Phone:</label>
-        <input type="tel" name="phone" id="phone" />
+        <input
+          onChange={onChange}
+          type="tel"
+          name="phone"
+          id="phone"
+          value={obj.phone}
+        />
       </fieldset>
     </>
   );

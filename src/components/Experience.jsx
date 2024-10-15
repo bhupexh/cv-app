@@ -1,18 +1,36 @@
-export default function Experience() {
+export default function Experience({ obj, onChange }) {
   return (
     <>
       <fieldset>
         <legend>Experience</legend>
         <label htmlFor="company">Company Name:</label>
-        <input type="text" name="company" id="company" />
+        <input
+          onChange={onChange}
+          type="text"
+          name="company"
+          id="company"
+          value={obj.company}
+        />
         <label htmlFor="position">Position Title:</label>
-        <input type="text" name="position" id="position" />
+        <input
+          onChange={onChange}
+          type="text"
+          name="position"
+          id="position"
+          value={obj.position}
+        />
         <label htmlFor="role">Role:</label>
-        <input type="text" name="role" id="role" />
+        <input
+          onChange={onChange}
+          type="text"
+          name="role"
+          id="role"
+          value={obj.role}
+        />
         <label htmlFor="from">From:</label>
-        <input type="date" name="from" id="from"/>
+        <input onChange={onChange} type="date" name="from" id="from" />
         <label htmlFor="to">To:</label>
-        <input type="date" name="to" id="to"/>
+        <input onChange={onChange} type="date" name="to" id="to" />
       </fieldset>
     </>
   );
