@@ -1,33 +1,42 @@
-export default function Education({ obj, onChange }) {
+import { useState } from "react";
+import { HR } from "./PreviewPane";
+import ToggleButton from "./ToggleButton";
+import InputField from "./InputField";
+
+export default function Education({ obj, onChange, fieldList }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const fields = [
+    { label: "School", name: "school", type: "text" },
+    { label: "Course Title", name: "title", type: "text" },
+    { label: "Duration", name: "duration", type: "text" },
+  ];
+
   return (
-    <>
-      <fieldset>
-        <legend>Education</legend>
-        <label htmlFor="school">School:</label>
-        <input
-          onChange={onChange}
-          type="text"
-          name="school"
-          id="school"
-          value={obj.school}
+    <div className={fieldList}>
+      <div className="flex justify-between">
+        <div>Education</div>
+        <ToggleButton
+          isVisible={isVisible}
+          onClick={() => setIsVisible((prev) => !prev)}
         />
-        <label htmlFor="title">Course Title:</label>
-        <input
-          onChange={onChange}
-          type="text"
-          name="title"
-          id="title"
-          value={obj.title}
-        />
-        <label htmlFor="duration">Duration:</label>
-        <input
-          onChange={onChange}
-          type="text"
-          name="duration"
-          id="duration"
-          value={obj.duration}
-        />
-      </fieldset>
-    </>
+      </div>
+      <div
+        className={`transition-max-height duration-500 overflow-hidden ${isVisible ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
+      >
+        <HR />
+        <div className="flex flex-col gap-2">
+          {fields.map(({ label, name, type }) => (
+            <InputField
+              key={name}
+              label={label}
+              type={type}
+              value={obj[name]}
+              onChange={onChange}
+              name={name}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }

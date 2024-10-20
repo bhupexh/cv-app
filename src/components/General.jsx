@@ -1,33 +1,42 @@
-export default function General({ obj, onChange }) {
+import { useState } from "react";
+import { HR } from "./PreviewPane";
+import ToggleButton from "./ToggleButton";
+import InputField from "./InputField";
+
+export default function General({ obj, onChange, fieldList }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const fields = [
+    { label: "Name", name: "name", type: "text" },
+    { label: "Email", name: "email", type: "email" },
+    { label: "Phone", name: "phone", type: "tel" },
+  ];
+
   return (
-    <>
-      <fieldset>
-        <legend>General Information</legend>
-        <label htmlFor="name">Name:</label>
-        <input
-          onChange={onChange}
-          type="text"
-          name="name"
-          id="name"
-          value={obj.name}
+    <div className={fieldList}>
+      <div className="flex justify-between">
+        <div>General Information</div>
+        <ToggleButton
+          isVisible={isVisible}
+          onClick={() => setIsVisible((prev) => !prev)}
         />
-        <label htmlFor="mail">Email:</label>
-        <input
-          onChange={onChange}
-          type="email"
-          name="mail"
-          id="mail"
-          value={obj.mail}
-        />
-        <label htmlFor="phone">Phone:</label>
-        <input
-          onChange={onChange}
-          type="tel"
-          name="phone"
-          id="phone"
-          value={obj.phone}
-        />
-      </fieldset>
-    </>
+      </div>
+      <div
+        className={`transition-max-height duration-500 overflow-hidden ${isVisible ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
+      >
+        <HR />
+        <div className="flex flex-col gap-2">
+          {fields.map(({ label, name, type }) => (
+            <InputField
+              key={name}
+              label={label}
+              type={type}
+              value={obj[name]}
+              onChange={onChange}
+              name={name}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }

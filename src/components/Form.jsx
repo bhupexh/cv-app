@@ -1,57 +1,45 @@
 import General from "./General";
 import Education from "./Education";
 import Experience from "./Experience";
-import jsPDF from "jspdf";
-import { useState } from "react";
 
-function handleForm(e) {
-  e.preventDefault();
-
-  const form = new FormData(e.target);
-
-  const doc = new jsPDF();
-
-  let x = 10,
-    y = 10;
-  form.forEach((value, key) => {
-    doc.text(key + " " + value, x, y);
-    y += 10;
-  });
-
-  const pdfData = doc.output("datauristring");
-  window.open(pdfData);
+function handleForm() {
+  window.print();
 }
 
-export default function Form() {
-  const obj = {
-    name: "",
-    mail: "",
-    phone: "",
-    school: "",
-    title: "",
-    duration: "",
-    company: "",
-    position: "",
-    role: "",
-  };
-
-  const [data, setData] = useState(obj);
-
-  function onChange(e) {
-    const { name, value } = e.target;
-    setData({
-      ...data,
-      [name]: value,
-    });
-  }
-
+export default function Form({ data, onChange }) {
+  const fieldList = "rounded-xl flex flex-col p-4 border-2 border-black";
+  const inputList = "p-1 rounded-lg border-2 border-black";
   return (
     <>
-      <form action="" onSubmit={handleForm}>
-        <General obj={data} onChange={onChange} />
-        <Education obj={data} onChange={onChange} />
-        <Experience obj={data} onChange={onChange} />
-        <button type="submit">Submit</button>
+      <form
+        className="h-fit flex flex-col w-1/2 gap-4 p-4 border-2 border-black print:hidden grow rounded-2xl"
+        action=""
+        onSubmit={handleForm}
+      >
+        <General
+          obj={data}
+          onChange={onChange}
+          fieldList={fieldList}
+          inputList={inputList}
+        />
+        <Education
+          obj={data}
+          onChange={onChange}
+          fieldList={fieldList}
+          inputList={inputList}
+        />
+        <Experience
+          obj={data}
+          onChange={onChange}
+          fieldList={fieldList}
+          inputList={inputList}
+        />
+        <button
+          className="self-center w-20 py-1 border border-black rounded-md"
+          type="submit"
+        >
+          Submit
+        </button>
       </form>
     </>
   );

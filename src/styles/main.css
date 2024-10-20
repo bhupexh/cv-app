@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply text-[#1f1f1f];
+}
+
+.preview {
+  @apply print:block print:absolute print:w-full print:h-full print:top-0 print:right-0 print:left-0 print:bottom-0 print:m-0 print:mt-0 print:border print:border-solid;
+}
