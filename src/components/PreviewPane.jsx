@@ -10,16 +10,16 @@ const PreviewPane = ({ data }) => {
   let name, education, experience;
 
   if (data.name) {
-    name = <div classname="text-xl font-bold">{data.name}</div>;
+    name = <div className="text-xl font-bold">{data.name}</div>;
   }
 
   if (data.title || data.duration || data.school) {
     education = (
       <>
-        <div classname="text-lg font-bold">education</div>
+        <div className="text-lg font-bold">Education</div>
         <hr />
-        <div classname="flex justify-between">
-          <div classname="font-bold text-md">{data.title}</div>
+        <div className="flex justify-between">
+          <div className="font-bold text-md">{data.title}</div>
           <div>{data.duration}</div>
         </div>
         <div>{data.school}</div>
@@ -30,20 +30,20 @@ const PreviewPane = ({ data }) => {
   if (data.position || data.to || data.role || data.company) {
     experience = (
       <>
-        <div classname="text-lg font-bold">experience</div>
+        <div className="text-lg font-bold">Experience</div>
         <hr />
-        <div classname="flex justify-between">
-          <div classname="font-bold text-md">{data.position}</div>
+        <div className="flex justify-between">
+          <div className="font-bold text-md">{data.position}</div>
           <div>{(data.from ? `${data.from}-` : "") + data.to}</div>
         </div>
         <div>{data.company}</div>
-        <div classname="pl-4">{data.role ? `- ${data.role}` : ""}</div>
+        <div className="pl-4">{data.role ? `- ${data.role}` : ""}</div>
       </>
     );
   }
 
   return (
-    <div classname="hidden w-1/2 border-2 border-[#666666] preview lg:block">
+    <div className="hidden w-1/2 border-2 border-[#666666] preview lg:block">
       <div className="flex flex-col items-center justify-center gap-4 m-4">
         {name}
         <div className="flex gap-4">

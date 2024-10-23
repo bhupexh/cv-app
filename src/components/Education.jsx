@@ -1,10 +1,14 @@
-import { useState } from "react";
 import { HR } from "./PreviewPane";
 import ToggleButton from "./ToggleButton";
 import InputField from "./InputField";
 
-export default function Education({ obj, onChange, fieldList }) {
-  const [isVisible, setIsVisible] = useState(false);
+export default function Education({
+  obj,
+  onChange,
+  fieldList,
+  isVisible,
+  setIsVisible,
+}) {
   const fields = [
     { label: "School", name: "school", type: "text" },
     { label: "Course Title", name: "title", type: "text" },
@@ -15,10 +19,7 @@ export default function Education({ obj, onChange, fieldList }) {
     <div className={fieldList}>
       <div className="flex justify-between">
         <div>Education</div>
-        <ToggleButton
-          isVisible={isVisible}
-          onClick={() => setIsVisible((prev) => !prev)}
-        />
+        <ToggleButton isVisible={isVisible} onClick={() => setIsVisible()} />
       </div>
       <div
         className={`transition-max-height duration-500 overflow-hidden ${isVisible ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
