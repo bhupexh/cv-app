@@ -13,6 +13,8 @@ export default function Experience({
     { label: "Company Name", name: "company", type: "text" },
     { label: "Position Title", name: "position", type: "text" },
     { label: "Role", name: "role", type: "text" },
+  ];
+  const dates = [
     { label: "From", name: "from", type: "date" },
     { label: "To", name: "to", type: "date" },
   ];
@@ -36,6 +38,19 @@ export default function Experience({
               value={obj[name]}
               onChange={onChange}
               name={name}
+            />
+          ))}
+        </div>
+        <div className="flex gap-2 pt-2 w-full h-20 lg:gap-8">
+          {dates.map(({ label, name, type }) => (
+            <InputField
+              key={name}
+              label={label}
+              type={type}
+              value={obj[name]}
+              onChange={onChange}
+              name={name}
+              className="grow"
             />
           ))}
         </div>

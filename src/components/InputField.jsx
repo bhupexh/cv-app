@@ -1,5 +1,13 @@
-const InputField = ({ label, type, value, onChange, name }) => (
-  <div className="flex flex-col">
+const InputField = ({
+  label,
+  type,
+  value,
+  onChange,
+  name,
+  onClick,
+  className = "",
+}) => (
+  <div className={`flex flex-col ${className}`}>
     <label htmlFor={name} className="pb-1">
       {label}:
     </label>
@@ -10,6 +18,7 @@ const InputField = ({ label, type, value, onChange, name }) => (
       id={name}
       value={value}
       onChange={onChange}
+      onClick={onClick}
     />
   </div>
 );

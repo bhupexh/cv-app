@@ -12,7 +12,11 @@ export default function Education({
   const fields = [
     { label: "School", name: "school", type: "text" },
     { label: "Course Title", name: "title", type: "text" },
-    { label: "Duration", name: "duration", type: "text" },
+  ];
+
+  const dates = [
+    { label: "From", name: "edufrom", type: "date" },
+    { label: "To", name: "eduto", type: "date" },
   ];
 
   return (
@@ -34,6 +38,19 @@ export default function Education({
               value={obj[name]}
               onChange={onChange}
               name={name}
+            />
+          ))}
+        </div>
+        <div className="flex gap-2 pt-2 w-full h-20 lg:gap-8">
+          {dates.map(({ label, name, type }) => (
+            <InputField
+              key={name}
+              label={label}
+              type={type}
+              value={obj[name]}
+              onChange={onChange}
+              name={name}
+              className="grow"
             />
           ))}
         </div>

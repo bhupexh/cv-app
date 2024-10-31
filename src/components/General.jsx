@@ -34,6 +34,9 @@ export default function General({
               value={obj[name]}
               onChange={onChange}
               name={name}
+              onClick={(e) => {
+                e.target.select();
+              }}
             />
           ))}
         </div>
