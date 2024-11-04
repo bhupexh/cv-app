@@ -10,6 +10,16 @@ const PreviewPane = ({ data }) => {
   const Experience = () => {
     const from = formatDate(data.from);
     const to = formatDate(data.to);
+    const roles = Object.keys(data)
+      .filter((key) => key.startsWith("role"))
+      .sort((a, b) => {
+        const numA = parseInt(a.replace("role", ""), 10);
+        const numB = parseInt(b.replace("role", ""), 10);
+        return numA - numB;
+      })
+      .map((key) => (
+        <div className="pl-2 w-full break-words">{`- ${data[key]}`}</div>
+      ));
 
     return (
       <>
@@ -20,7 +30,7 @@ const PreviewPane = ({ data }) => {
           <div>{`${from} - ${to}`}</div>
         </div>
         <div>{data.company}</div>
-        <div className="pl-4">{data.role ? `- ${data.role}` : ""}</div>
+        <div className="pl-4 w-full">{roles}</div>
       </>
     );
   };

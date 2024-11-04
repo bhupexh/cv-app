@@ -1,6 +1,7 @@
 import { HR } from "./PreviewPane";
 import ToggleButton from "./ToggleButton";
 import InputField from "./InputField";
+import Roles from "./Roles";
 
 export default function Experience({
   obj,
@@ -12,8 +13,8 @@ export default function Experience({
   const fields = [
     { label: "Company Name", name: "company", type: "text" },
     { label: "Position Title", name: "position", type: "text" },
-    { label: "Role", name: "role", type: "text" },
   ];
+
   const dates = [
     { label: "From", name: "from", type: "date" },
     { label: "To", name: "to", type: "date" },
@@ -26,7 +27,7 @@ export default function Experience({
         <ToggleButton isVisible={isVisible} onClick={() => setIsVisible()} />
       </div>
       <div
-        className={`transition-max-height duration-500 overflow-hidden ${isVisible ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
+        className={`transition-max-height overflow-y-auto pr-3 duration-500 overflow-hidden ${isVisible ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
       >
         <HR />
         <div className="flex flex-col gap-2">
@@ -40,6 +41,7 @@ export default function Experience({
               name={name}
             />
           ))}
+          <Roles obj={obj} onChange={onChange} />
         </div>
         <div className="flex gap-2 pt-2 w-full h-20 lg:gap-8">
           {dates.map(({ label, name, type }) => (

@@ -13,7 +13,6 @@ export default function App() {
     eduto: "2029-10-30",
     company: "ABC Inc",
     position: "XYZ",
-    role: "",
     from: "2026-06-28",
     to: "2029-10-30",
   };
