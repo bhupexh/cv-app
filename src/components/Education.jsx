@@ -4,6 +4,7 @@ import InputField from "./InputField";
 
 export default function Education({
   obj,
+  index,
   onChange,
   fieldList,
   isVisible,
@@ -32,24 +33,24 @@ export default function Education({
         <div className="flex flex-col gap-2">
           {fields.map(({ label, name, type }) => (
             <InputField
-              key={name}
+              key={`education-${index}-${name}`}
               label={label}
               type={type}
               value={obj[name]}
               onChange={onChange}
-              name={name}
+              name={`education-${index}-${name}`}
             />
           ))}
         </div>
         <div className="flex gap-2 pt-2 w-full h-20 lg:gap-8">
           {dates.map(({ label, name, type }) => (
             <InputField
-              key={name}
+              key={`education-${index}-${name}`}
               label={label}
               type={type}
               value={obj[name]}
               onChange={onChange}
-              name={name}
+              name={`education-${index}-${name}`}
               className="grow"
             />
           ))}

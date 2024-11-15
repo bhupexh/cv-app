@@ -4,6 +4,7 @@ import InputField from "./InputField";
 
 export default function General({
   obj,
+  index,
   onChange,
   fieldList,
   isVisible,
@@ -28,12 +29,12 @@ export default function General({
         <div className="flex flex-col gap-2">
           {fields.map(({ label, name, type }) => (
             <InputField
-              key={name}
+              key={`general-${index}-${name}`}
               label={label}
               type={type}
               value={obj[name]}
               onChange={onChange}
-              name={name}
+              name={`general-${index}-${name}`}
               onClick={(e) => {
                 e.target.select();
               }}

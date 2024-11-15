@@ -6,10 +6,11 @@ const icons = {
   phone: phoneIcon,
 };
 
-const PreviewPane = ({ data }) => {
-  const Experience = () => {
+const PreviewPane = ({ obj }) => {
+  const Experience = ({ data }) => {
     const from = formatDate(data.from);
     const to = formatDate(data.to);
+
     const roles = Object.keys(data)
       .filter((key) => key.startsWith("role"))
       .sort((a, b) => {
@@ -21,10 +22,9 @@ const PreviewPane = ({ data }) => {
         <div className="pl-2 w-full break-words">{`- ${data[key]}`}</div>
       ));
 
+    console.log(data);
     return (
       <>
-        <div className="text-lg font-bold">Experience</div>
-        <HR />
         <div className="flex justify-between">
           <div className="font-bold text-md">{data.position}</div>
           <div>{`${from} - ${to}`}</div>
@@ -42,14 +42,11 @@ const PreviewPane = ({ data }) => {
     });
   };
 
-  const Education = () => {
+  const Education = ({ data }) => {
     const from = formatDate(data.edufrom);
     const to = formatDate(data.eduto);
-
     return (
       <>
-        <div className="text-lg font-bold">Education</div>
-        <HR />
         <div className="flex justify-between">
           <div className="font-bold text-md">{data.title}</div>
           <div>{`${from} - ${to}`}</div>
@@ -71,16 +68,24 @@ const PreviewPane = ({ data }) => {
 
   return (
     <Page>
-      <div className="text-xl font-bold">{data.name}</div>
+      <div className="text-xl font-bold">{obj.general[0].name}</div>
       <div className="flex gap-4">
-        <Contact data={data.email} alt="email" />
-        <Contact data={data.phone} alt="phone" />
+        <Contact data={obj.general[0].email} alt="email" />
+        <Contact data={obj.general[0].phone} alt="phone" />
       </div>
       <div className="w-full">
-        <Education />
+        <div className="text-lg font-bold">Education</div>
+        <HR />
+        {obj.education.map((item, itemIndex) => {
+          return <Education key={itemIndex} data={item} />;
+        })}
       </div>
       <div className="w-full">
-        <Experience />
+        <div className="text-lg font-bold">Experience</div>
+        <HR />
+        {obj.experience.map((item, itemIndex) => {
+          return <Experience key={itemIndex} data={item} />;
+        })}
       </div>
     </Page>
   );
