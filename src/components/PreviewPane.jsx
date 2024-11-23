@@ -22,7 +22,6 @@ const PreviewPane = ({ obj }) => {
         <div className="pl-2 w-full break-words">{`- ${data[key]}`}</div>
       ));
 
-    console.log(data);
     return (
       <>
         <div className="flex justify-between">

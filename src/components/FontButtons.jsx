@@ -1,11 +1,6 @@
-import { useState } from "react";
 const FontButton = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-
   const handleFontChange = (index) => {
-    setActiveIndex(index);
     const previewPane = document.querySelector(".preview-pane");
-
     previewPane.classList.remove("font-sans", "font-serif", "font-mono");
 
     switch (index) {
